@@ -1,203 +1,396 @@
-<!DOCTYPE html>
-<html lang="it">
+<!DOCTYPE html><html lang="it">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cloud Passport ☁️</title>
-<style>
-  *{box-sizing:border-box}
-  body{margin:0;font-family:Arial,sans-serif;background:#f5f1ff;color:#262238}
-  header{background:linear-gradient(135deg,#8b7bd8,#c9bfff);color:white;padding:32px 20px;text-align:center}
-  header h1{margin:0;font-size:2.2rem}
-  header p{margin:8px 0 0}
-  main{max-width:850px;margin:auto;padding:22px}
-  .card{background:white;border-radius:22px;padding:22px;margin:16px 0;box-shadow:0 6px 20px #00000012}
-  .hidden{display:none}
-  input{width:100%;padding:14px;border:2px solid #ded8f5;border-radius:12px;font-size:1rem;margin:7px 0 12px}
-  button{border:0;border-radius:12px;padding:13px 18px;font-size:1rem;font-weight:bold;cursor:pointer;background:#8b7bd8;color:white}
-  button.secondary{background:#eeeafa;color:#5b4b9b}
-  .topline{display:flex;justify-content:space-between;gap:10px;align-items:center}
-  .progress{height:14px;background:#eeeafa;border-radius:99px;overflow:hidden;margin:10px 0 6px}
-  .bar{height:100%;width:0;background:#8b7bd8;transition:.4s}
-  .collection{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
-  .passport{border:2px dashed #c9bfff;border-radius:18px;padding:18px;background:#fcfbff}
-  .passport.locked{opacity:.55;filter:grayscale(.5)}
-  .passport h3{margin:0 0 8px}
-  .tag{font-size:.85rem;background:#eeeafa;padding:5px 9px;border-radius:99px;display:inline-block}
-  .success{color:#317c53;font-weight:bold;min-height:24px}
-  .small{font-size:.9rem;color:#69627c}
-  footer{text-align:center;padding:25px;color:#69627c}
-</style>
-</head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Cloud Passport ☁️</title><style>
+  * {
+    box-sizing: border-box;
+  }
 
-<body>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f1ff;
+    color: #262238;
+  }
 
-<header>
+  header {
+    background: linear-gradient(135deg, #8b7bd8, #c9bfff);
+    color: white;
+    padding: 32px 20px;
+    text-align: center;
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 2.2rem;
+  }
+
+  header p {
+    margin: 8px 0 0;
+  }
+
+  main {
+    max-width: 850px;
+    margin: auto;
+    padding: 22px;
+  }
+
+  .card {
+    background: white;
+    border-radius: 22px;
+    padding: 22px;
+    margin: 16px 0;
+    box-shadow: 0 6px 20px #00000012;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  input {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #ded8f5;
+    border-radius: 12px;
+    font-size: 1rem;
+    margin: 7px 0 12px;
+  }
+
+  button {
+    border: 0;
+    border-radius: 12px;
+    padding: 13px 18px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    background: #8b7bd8;
+    color: white;
+  }
+
+  button.secondary {
+    background: #eeeafa;
+    color: #5b4b9b;
+  }
+
+  .topline {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .progress {
+    height: 14px;
+    background: #eeeafa;
+    border-radius: 99px;
+    overflow: hidden;
+    margin: 10px 0 6px;
+  }
+
+  .bar {
+    height: 100%;
+    width: 0;
+    background: #8b7bd8;
+    transition: 0.4s;
+  }
+
+  .collection {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 14px;
+  }
+
+  .passport {
+    border: 2px dashed #c9bfff;
+    border-radius: 18px;
+    padding: 18px;
+    background: #fcfbff;
+  }
+
+  .passport.locked {
+    opacity: 0.55;
+    filter: grayscale(0.5);
+  }
+
+  .passport h3 {
+    margin: 10px 0 8px;
+  }
+
+  .passport-image {
+    width: 100%;
+    border-radius: 12px;
+    margin-top: 10px;
+    display: block;
+  }
+
+  .tag {
+    font-size: 0.85rem;
+    background: #eeeafa;
+    padding: 5px 9px;
+    border-radius: 99px;
+    display: inline-block;
+  }
+
+  .success {
+    color: #317c53;
+    font-weight: bold;
+    min-height: 24px;
+    margin-top: 10px;
+  }
+
+  .small {
+    font-size: 0.9rem;
+    color: #69627c;
+  }
+
+  footer {
+    text-align: center;
+    padding: 25px;
+    color: #69627c;
+  }
+</style></head><body><header>
   <h1>☁️ Cloud Passport</h1>
   <p>La tua collezione Seoul Cloud, sempre online.</p>
-</header>
-
-<main>
-
-  <section id="welcome" class="card">
+</header><main>  <section id="welcome" class="card">
     <h2>Benvenuto, Cloud viaggiatore! 🛂</h2>
-    <p>Crea il tuo profilo e inizia a collezionare i Seoul Cloud Passport.</p>
+    <p>Crea il tuo profilo e inizia a collezionare i Seoul Cloud Passport.</p><input
+  id="username"
+  maxlength="20"
+  placeholder="Scegli un nome utente"
+>
 
-    <input id="username" maxlength="20" placeholder="Scegli un nome utente">
+<button onclick="start()">Inizia il viaggio ☁️</button>
 
-    <button onclick="start()">Inizia il viaggio ☁️</button>
+<p class="small">
+  Questa prima versione salva la collezione nel browser di questo dispositivo.
+</p>
 
-    <p class="small">
-      Questa prima versione salva la collezione nel browser di questo dispositivo.
-    </p>
-  </section>
-
-  <section id="app" class="hidden">
-
-    <div class="card">
-      <div class="topline">
-        <div>
-          <h2 id="hello">Ciao!</h2>
-          <p class="small">Il tuo Passport Book personale</p>
-        </div>
-
-        <button class="secondary" onclick="logout()">Cambia profilo</button>
-      </div>
-
-      <h3 id="count">0 / 3 Passport raccolti</h3>
-
-      <div class="progress">
-        <div class="bar" id="bar"></div>
-      </div>
+  </section>  <section id="app" class="hidden"><div class="card">
+  <div class="topline">
+    <div>
+      <h2 id="hello">Ciao!</h2>
+      <p class="small">Il tuo Passport Book personale</p>
     </div>
 
-    <div class="card">
-      <h2>🔑 Sblocca un Passport</h2>
-      <p>Inserisci il codice trovato nei post di Seoul Cloud.</p>
+    <button class="secondary" onclick="logout()">
+      Cambia profilo
+    </button>
+  </div>
 
-      <input id="code" placeholder="Es. CLOUD-BP02">
+  <h3 id="count">0 / 3 Passport raccolti</h3>
 
-      <button onclick="unlock()">Aggiungi alla collezione</button>
+  <div class="progress">
+    <div class="bar" id="bar"></div>
+  </div>
+</div>
 
-      <div id="message" class="success"></div>
-    </div>
+<div class="card">
+  <h2>🔑 Sblocca un Passport</h2>
+  <p>Inserisci il codice trovato nei post di Seoul Cloud.</p>
 
-    <div class="card">
-      <h2>📚 La mia collezione</h2>
-      <div class="collection" id="collection"></div>
-    </div>
+  <input id="code" placeholder="Es. CLOUD-SK01">
 
-  </section>
+  <button onclick="unlock()">
+    Aggiungi alla collezione
+  </button>
 
-</main>
+  <div id="message" class="success"></div>
+</div>
 
-<footer>☁️ SEOUL CLOUD PASSPORT COLLECTION ☁️</footer>
+<div class="card">
+  <h2>📚 La mia collezione</h2>
+  <div class="collection" id="collection"></div>
+</div>
 
-<script>
+  </section></main><footer>
+  ☁️ SEOUL CLOUD PASSPORT COLLECTION ☁️
+</footer><script>
 
 const passports = [
   {
     id: "001",
     name: "Stray Kids",
     code: "CLOUD-SK01",
-    emoji: "⭐"
+    emoji: "⭐",
+    image: ""
   },
   {
     id: "002",
     name: "BLACKPINK",
     code: "CLOUD-BP02",
-    emoji: "🖤💗"
+    emoji: "🖤💗",
+    image: ""
   },
   {
     id: "003",
     name: "ILLIT",
     code: "MAGNETIC-ILLIT003",
-    emoji: "☁️"
+    emoji: "☁️",
+
+    /* INCOLLA QUI LA TUA IMMAGINE BASE64 COMPLETA */
+    image: "INCOLLA_QUI_LA_TUA_IMMAGINE_BASE64"
   }
 ];
+
 
 function getUser() {
   return localStorage.getItem("cloudUser");
 }
 
+
 function getCollected() {
-  return JSON.parse(localStorage.getItem("cloudCollected") || "[]");
+  return JSON.parse(
+    localStorage.getItem("cloudCollected") || "[]"
+  );
 }
+
 
 function saveCollected(x) {
-  localStorage.setItem("cloudCollected", JSON.stringify(x));
+  localStorage.setItem(
+    "cloudCollected",
+    JSON.stringify(x)
+  );
 }
 
+
 function start() {
-  const name = document.getElementById("username").value.trim();
+
+  const name =
+    document.getElementById("username").value.trim();
 
   if (!name) return;
 
   localStorage.setItem("cloudUser", name);
+
   showApp();
 }
 
+
 function logout() {
+
   localStorage.removeItem("cloudUser");
+
   location.reload();
 }
 
+
 function showApp() {
+
   const user = getUser();
 
-  document.getElementById("welcome").classList.toggle("hidden", !!user);
-  document.getElementById("app").classList.toggle("hidden", !user);
+  document
+    .getElementById("welcome")
+    .classList
+    .toggle("hidden", !!user);
+
+  document
+    .getElementById("app")
+    .classList
+    .toggle("hidden", !user);
 
   if (!user) return;
 
-  document.getElementById("hello").textContent = "Ciao, Cloud " + user + "! ☁️";
+  document.getElementById("hello").textContent =
+    "Ciao, Cloud " + user + "! ☁️";
 
   render();
 }
 
+
 function render() {
+
   const collected = getCollected();
 
   document.getElementById("count").textContent =
-    collected.length + " / " + passports.length + " Passport raccolti";
+    collected.length +
+    " / " +
+    passports.length +
+    " Passport raccolti";
 
   document.getElementById("bar").style.width =
     (collected.length / passports.length * 100) + "%";
 
-  document.getElementById("collection").innerHTML = passports.map(p => {
 
-    const ok = collected.includes(p.id);
+  document.getElementById("collection").innerHTML =
+    passports.map(p => {
 
-    return `
-      <div class="passport ${ok ? "" : "locked"}">
-        <span class="tag">#${p.id}</span>
-        <h3>${p.emoji} ${ok ? p.name : "Passport segreto"}</h3>
-        <p>${ok ? "Raccolto! ✨" : "🔒 Trova il codice per sbloccarlo😚"}</p>
-      </div>
-    `;
+      const ok = collected.includes(p.id);
 
-  }).join("");
+      return `
+        <div class="passport ${ok ? "" : "locked"}">
+
+          <span class="tag">
+            #${p.id}
+          </span>
+
+          <h3>
+            ${p.emoji}
+            ${ok ? p.name : "Passport segreto"}
+          </h3>
+
+          ${
+            ok && p.image && !p.image.includes("INCOLLA_QUI")
+              ? `
+                <img
+                  src="${p.image}"
+                  alt="Cloud Passport ${p.name}"
+                  class="passport-image"
+                >
+              `
+              : ""
+          }
+
+          <p>
+            ${
+              ok
+                ? "Raccolto! ✨"
+                : "🔒 Trova il codice per sbloccarlo 😚"
+            }
+          </p>
+
+        </div>
+      `;
+
+    }).join("");
 }
+
 
 function unlock() {
 
-  const value = document.getElementById("code").value.trim().toUpperCase();
+  const value =
+    document
+      .getElementById("code")
+      .value
+      .trim()
+      .toUpperCase();
 
-  const p = passports.find(x => x.code === value);
+  const p =
+    passports.find(x => x.code === value);
 
-  const msg = document.getElementById("message");
+  const msg =
+    document.getElementById("message");
+
 
   if (!p) {
-    msg.textContent = "Questo codice non è valido Cloud. Riprova!☁️";
+
+    msg.textContent =
+      "Questo codice non è valido Cloud. Riprova! ☁️";
+
     return;
   }
+
 
   const c = getCollected();
 
+
   if (c.includes(p.id)) {
-    msg.textContent = "Hai già questo Passport nella tua collezione! ☁️";
+
+    msg.textContent =
+      "Hai già questo Passport nella tua collezione! ☁️";
+
     return;
   }
+
 
   c.push(p.id);
 
@@ -205,15 +398,20 @@ function unlock() {
 
   document.getElementById("code").value = "";
 
+
   msg.textContent =
-    "🎉 Passport #" + p.id + " — " + p.name + " sbloccato!";
+    "🎉 Passport #" +
+    p.id +
+    " — " +
+    p.name +
+    " sbloccato!";
+
 
   render();
 }
 
+
 showApp();
 
-</script>
-
-</body>
+</script></body>
 </html>
